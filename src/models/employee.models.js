@@ -1,5 +1,5 @@
 var conn =require('../../config/db.config');
-var Employee = (employee)=>{
+var Employee = function (employee){
     this.first_name= employee.first_name ; 
     this.last_name = employee.last_name ; 
     this.email = employee.email ; 
@@ -9,7 +9,7 @@ var Employee = (employee)=>{
     this.salary = employee.salary ; 
     this.status = employee.status ? employee.status:1 ; 
     this.created_at = new Date(); 
-    this.upload_at = new Date(); 
+    this.updated_at = new Date(); 
 }
 // get all employess ; 
 Employee.getAllEmployees = (result)=>{
@@ -41,11 +41,11 @@ Employee.creteNewEmployee=(employeeData , result)=>{
     conn.query('INSERT INTO employees SET ?',employeeData,(err, res)=>{
         if(err){
             console.log('Error Whie Inserting Data');
-            result(null, {status:false , message:err});
+            result(null,err);
         }
         else{
             console.log('Employee Addign Succesfully');
-            result(null, {status:true , message:'Success Adding Data',insertedId :res.id});
+            result(null, res);
         }
     })
 }
