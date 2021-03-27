@@ -14,3 +14,27 @@ exports.getEmployeeList= (req , res)=>{
     })
 
 }
+// Get By Id ; 
+exports.getEmployeeById = (req, res)=>{
+    M_employe.getEmployeeById(req.params.id, (err, employee)=>{
+        if(err)
+        {
+            res.send(err)
+        }
+        else{
+            res.send(employee);
+        }
+    })
+
+};
+// crete new employee ; 
+exports.createNewEmploye= (req, res)=>{
+    console.log('Cretate', req.body);
+    if(req.body.constructor ===Object && Object(req.body).length=== 0){
+        res.send(400).send({success:false , message:'please Fild All Field '}); 
+    }
+    else{
+        console.log('Valid Data');
+    }
+}
+

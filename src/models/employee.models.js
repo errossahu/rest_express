@@ -24,4 +24,29 @@ Employee.getAllEmployees = (result)=>{
 
     })
 }
+Employee.getEmployeeById = (id, result)=>{
+    conn.query('Select * from employees  where id=?',id,(err,res)=>{
+        if(err)
+        {
+            console.log('Errr While Fetching Data', err); 
+            result(null, err); 
+        }
+        else{
+            result(null, res); 
+        }
+
+    })
+}
+Employee.creteNewEmployee=(employeeData , result)=>{
+    conn.query('INSERT INTO employees SET ?',employeeData,(err, res)=>{
+        if(err){
+            console.log('Error Whie Inserting Data');
+            result(null, {status:false , message:err});
+        }
+        else{
+            console.log('Employee Addign Succesfully');
+            result(null, {status:true , message:'Success Adding Data',insertedId :res.id});
+        }
+    })
+}
 module.exports= Employee ; 
