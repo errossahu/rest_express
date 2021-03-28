@@ -9,7 +9,14 @@ const dbCon = mysql.createConnection({
 
 });
 dbCon.connect(function (error) {
-    if(error) throw error;
-    console.log('Database Connent Succesfully'); 
+    try {
+        if(error) throw error;
+        console.log('Database Connent Succesfully'); 
+    } catch (error) {
+        console.log(error)
+    }
+
+
+    
 }); 
 module.exports= dbCon ; 

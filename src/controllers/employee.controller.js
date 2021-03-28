@@ -61,14 +61,16 @@ exports.updateEmoloyee=(req , res)=>{
         res.send(400).send({success:false , message:'please Fild All Field '}); 
     }
     else{
-        M_employe.updateEmoloyee(req.params.id,employeeReqData, (err, employee)=>{
+        M_employe.updateEmployee(req.params.id,employeeReqData, (err, employee)=>{
             if(err)
             {
                 res.send(err);
                 res.json({status:false , message:'Something Wrong'});
             }
             else{
-                res.send({status:true , message:'Good', data:employee});
+
+
+                res.json({status:true , message:'Good', data:employee.insertedId})
             }
         });
         console.log('Valid Data');
