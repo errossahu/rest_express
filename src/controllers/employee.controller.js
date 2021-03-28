@@ -51,3 +51,28 @@ exports.createNewEmploye= (req, res)=>{
     }
 }
 
+// update employee 
+exports.updateEmoloyee=(req , res)=>{
+    
+
+    const employeeReqData  =new M_employe(req.body);
+    console.log('Update Employee', employeeReqData);
+    if(req.body.constructor ===Object && Object.keys(req.body).length=== 0){
+        res.send(400).send({success:false , message:'please Fild All Field '}); 
+    }
+    else{
+        M_employe.updateEmoloyee(req.params.id,employeeReqData, (err, employee)=>{
+            if(err)
+            {
+                res.send(err);
+                res.json({status:false , message:'Something Wrong'});
+            }
+            else{
+                res.send({status:true , message:'Good', data:employee});
+            }
+        });
+        console.log('Valid Data');
+    }   
+
+
+}

@@ -37,6 +37,7 @@ Employee.getEmployeeById = (id, result)=>{
 
     })
 }
+
 Employee.creteNewEmployee=(employeeData , result)=>{
     conn.query('INSERT INTO employees SET ?',employeeData,(err, res)=>{
         if(err){
@@ -48,5 +49,21 @@ Employee.creteNewEmployee=(employeeData , result)=>{
             result(null, res);
         }
     })
+}
+
+
+// updatte model query 
+
+Employee.updateEmployee= (id, employeeReqData, result)=>{
+    conn.query('UPDATE employee set first_name =? , last_name= ? , email=? , phone= ? , organization= ? , designation= ? , salary = ?,status=?  where id= ?" ,[employeeReqData.first_name , employeeReqData.last_name , employeeRegData.email,employeeReqData.phone, employeeReqData.organization, employeeReqData.designation,employeeReqData.salary,employeeRegData.status , id ]',(err, res)=>{
+        if(err){
+            console.log('Erro WHILE RECORDING');
+            result(null , err)
+        }
+        else{
+            result(null , res); 
+        }
+    });
+
 }
 module.exports= Employee ; 
