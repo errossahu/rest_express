@@ -71,4 +71,17 @@ Employee.updateEmployee= (id, employeeData, result)=>{
     });
 
 }
+Employee.deleteEmplyoee= (id,result)=>{
+    conn.query('DELETE FROM employees where id= ?', id ,(err , res)=>{
+        if(err)
+        {
+            console.log('Error while Deleting');
+            result(null, err)
+        }else{
+            console.log('Success')
+            result(null, res);
+        }
+    })
+}
+
 module.exports= Employee ; 

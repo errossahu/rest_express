@@ -78,3 +78,14 @@ exports.updateEmoloyee=(req , res)=>{
 
 
 }
+exports.deleteEmployee= (req , res)=>{
+        M_employe.deleteEmplyoee(req.params.id ,(err, employee)=>{
+            if(err)
+            {
+                res.send('Error')
+            }
+            else{
+                res.send('Success Delete')
+            }
+        })
+}

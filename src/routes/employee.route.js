@@ -13,4 +13,7 @@ route.get('/:id', EmployeController.getEmployeeById);
 route.post('/', EmployeController.createNewEmploye);
 // route put 
 route.put('/:id', EmployeController.updateEmoloyee);
+// route Delete 
+
+route.delete('/:id', EmployeController.deleteEmployee);
 module.exports= route
